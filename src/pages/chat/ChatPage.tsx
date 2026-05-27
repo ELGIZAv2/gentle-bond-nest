@@ -41,7 +41,7 @@ import AnimatedHeadline from "@/components/research/AnimatedHeadline";
 import type { ClarifyQuestion } from "@/components/research/ClarifyDialog";
 import GlowButton from "@/components/branding/GlowButton";
 import { ChatFollowups } from "@/components/chat/ChatFollowups";
-import megsyOsLogo from "@/assets/megsy-os-logo.png";
+
 
 // Heavy / conditionally-rendered — lazy load to shrink initial chat bundle
 const SlidesDeckCard = lazy(() => import("@/components/chat/SlidesDeckCard"));
