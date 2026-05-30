@@ -190,6 +190,7 @@ export type Database = {
           label: string | null
           project_id: string
           total_bytes: number
+          user_id: string | null
         }
         Insert: {
           created_at?: string
@@ -200,6 +201,7 @@ export type Database = {
           label?: string | null
           project_id: string
           total_bytes?: number
+          user_id?: string | null
         }
         Update: {
           created_at?: string
@@ -210,6 +212,7 @@ export type Database = {
           label?: string | null
           project_id?: string
           total_bytes?: number
+          user_id?: string | null
         }
         Relationships: [
           {
@@ -3578,7 +3581,15 @@ export type Database = {
           user_id?: string
           verification_status?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "project_custom_domains_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       project_drafts: {
         Row: {
