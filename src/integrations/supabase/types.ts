@@ -56,238 +56,6 @@ export type Database = {
         }
         Relationships: []
       }
-      agent_artifacts: {
-        Row: {
-          content: string
-          created_at: string
-          created_by_agent: string | null
-          id: string
-          path: string
-          run_id: string
-          user_id: string
-          version: number
-        }
-        Insert: {
-          content: string
-          created_at?: string
-          created_by_agent?: string | null
-          id?: string
-          path: string
-          run_id: string
-          user_id: string
-          version?: number
-        }
-        Update: {
-          content?: string
-          created_at?: string
-          created_by_agent?: string | null
-          id?: string
-          path?: string
-          run_id?: string
-          user_id?: string
-          version?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "agent_artifacts_run_id_fkey"
-            columns: ["run_id"]
-            isOneToOne: false
-            referencedRelation: "agent_runs"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      agent_runs: {
-        Row: {
-          completed_at: string | null
-          created_at: string
-          critic_issues: Json | null
-          critic_score: number | null
-          current_stage: string | null
-          error: string | null
-          final_output: Json | null
-          github_refs: Json | null
-          id: string
-          iteration_count: number
-          max_iterations: number
-          prompt: string
-          status: string
-          total_tokens: number
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          completed_at?: string | null
-          created_at?: string
-          critic_issues?: Json | null
-          critic_score?: number | null
-          current_stage?: string | null
-          error?: string | null
-          final_output?: Json | null
-          github_refs?: Json | null
-          id?: string
-          iteration_count?: number
-          max_iterations?: number
-          prompt: string
-          status?: string
-          total_tokens?: number
-          updated_at?: string
-          user_id: string
-        }
-        Update: {
-          completed_at?: string | null
-          created_at?: string
-          critic_issues?: Json | null
-          critic_score?: number | null
-          current_stage?: string | null
-          error?: string | null
-          final_output?: Json | null
-          github_refs?: Json | null
-          id?: string
-          iteration_count?: number
-          max_iterations?: number
-          prompt?: string
-          status?: string
-          total_tokens?: number
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
-      agent_steps: {
-        Row: {
-          agent_name: string
-          created_at: string
-          duration_ms: number | null
-          error: string | null
-          id: string
-          input: Json | null
-          iteration: number
-          output: Json | null
-          run_id: string
-          status: string
-          tokens_used: number | null
-          user_id: string
-        }
-        Insert: {
-          agent_name: string
-          created_at?: string
-          duration_ms?: number | null
-          error?: string | null
-          id?: string
-          input?: Json | null
-          iteration?: number
-          output?: Json | null
-          run_id: string
-          status?: string
-          tokens_used?: number | null
-          user_id: string
-        }
-        Update: {
-          agent_name?: string
-          created_at?: string
-          duration_ms?: number | null
-          error?: string | null
-          id?: string
-          input?: Json | null
-          iteration?: number
-          output?: Json | null
-          run_id?: string
-          status?: string
-          tokens_used?: number | null
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "agent_steps_run_id_fkey"
-            columns: ["run_id"]
-            isOneToOne: false
-            referencedRelation: "agent_runs"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      agent_tool_calls: {
-        Row: {
-          args: Json | null
-          created_at: string
-          duration_ms: number | null
-          error: string | null
-          id: string
-          result: Json | null
-          run_id: string
-          step_id: string
-          tool_name: string
-          user_id: string
-        }
-        Insert: {
-          args?: Json | null
-          created_at?: string
-          duration_ms?: number | null
-          error?: string | null
-          id?: string
-          result?: Json | null
-          run_id: string
-          step_id: string
-          tool_name: string
-          user_id: string
-        }
-        Update: {
-          args?: Json | null
-          created_at?: string
-          duration_ms?: number | null
-          error?: string | null
-          id?: string
-          result?: Json | null
-          run_id?: string
-          step_id?: string
-          tool_name?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "agent_tool_calls_run_id_fkey"
-            columns: ["run_id"]
-            isOneToOne: false
-            referencedRelation: "agent_runs"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "agent_tool_calls_step_id_fkey"
-            columns: ["step_id"]
-            isOneToOne: false
-            referencedRelation: "agent_steps"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      ai_inspiration_cache: {
-        Row: {
-          bytes: number
-          content: string
-          fetched_at: string
-          id: string
-          path: string
-          repo: string
-        }
-        Insert: {
-          bytes?: number
-          content: string
-          fetched_at?: string
-          id?: string
-          path: string
-          repo: string
-        }
-        Update: {
-          bytes?: number
-          content?: string
-          fetched_at?: string
-          id?: string
-          path?: string
-          repo?: string
-        }
-        Relationships: []
-      }
       ai_personalization: {
         Row: {
           about: string | null
@@ -345,8 +113,7 @@ export type Database = {
       ai_project_files: {
         Row: {
           content: string
-          embedding: string | null
-          embedding_updated_at: string | null
+          created_at: string
           id: string
           path: string
           project_id: string
@@ -354,8 +121,7 @@ export type Database = {
         }
         Insert: {
           content?: string
-          embedding?: string | null
-          embedding_updated_at?: string | null
+          created_at?: string
           id?: string
           path: string
           project_id: string
@@ -363,8 +129,7 @@ export type Database = {
         }
         Update: {
           content?: string
-          embedding?: string | null
-          embedding_updated_at?: string | null
+          created_at?: string
           id?: string
           path?: string
           project_id?: string
@@ -385,25 +150,25 @@ export type Database = {
           content: string
           created_at: string
           id: string
+          metadata: Json
           project_id: string
           role: string
-          tool_calls: Json | null
         }
         Insert: {
           content?: string
           created_at?: string
           id?: string
+          metadata?: Json
           project_id: string
           role: string
-          tool_calls?: Json | null
         }
         Update: {
           content?: string
           created_at?: string
           id?: string
+          metadata?: Json
           project_id?: string
           role?: string
-          tool_calls?: Json | null
         }
         Relationships: [
           {
@@ -418,81 +183,7 @@ export type Database = {
       ai_project_snapshots: {
         Row: {
           created_at: string
-          file_count: number
-          files: Json
-          id: string
-          label: string | null
-          message_id: string | null
-          project_id: string
-          total_bytes: number
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          file_count?: number
-          files?: Json
-          id?: string
-          label?: string | null
-          message_id?: string | null
-          project_id: string
-          total_bytes?: number
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          file_count?: number
-          files?: Json
-          id?: string
-          label?: string | null
-          message_id?: string | null
-          project_id?: string
-          total_bytes?: number
-          user_id?: string
-        }
-        Relationships: []
-      }
-      ai_project_usage: {
-        Row: {
-          action: string
-          completion_tokens: number
-          created_at: string
-          duration_ms: number | null
-          id: string
-          mc_cost: number
-          model: string | null
-          project_id: string
-          prompt_tokens: number
-          user_id: string
-        }
-        Insert: {
-          action: string
-          completion_tokens?: number
-          created_at?: string
-          duration_ms?: number | null
-          id?: string
-          mc_cost?: number
-          model?: string | null
-          project_id: string
-          prompt_tokens?: number
-          user_id: string
-        }
-        Update: {
-          action?: string
-          completion_tokens?: number
-          created_at?: string
-          duration_ms?: number | null
-          id?: string
-          mc_cost?: number
-          model?: string | null
-          project_id?: string
-          prompt_tokens?: number
-          user_id?: string
-        }
-        Relationships: []
-      }
-      ai_project_versions: {
-        Row: {
-          created_at: string
+          created_by: string | null
           files: Json
           id: string
           label: string | null
@@ -500,13 +191,15 @@ export type Database = {
         }
         Insert: {
           created_at?: string
-          files: Json
+          created_by?: string | null
+          files?: Json
           id?: string
           label?: string | null
           project_id: string
         }
         Update: {
           created_at?: string
+          created_by?: string | null
           files?: Json
           id?: string
           label?: string | null
@@ -514,7 +207,7 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "ai_project_versions_project_id_fkey"
+            foreignKeyName: "ai_project_snapshots_project_id_fkey"
             columns: ["project_id"]
             isOneToOne: false
             referencedRelation: "projects"
@@ -604,15 +297,7 @@ export type Database = {
           user_id?: string
           value?: Json
         }
-        Relationships: [
-          {
-            foreignKeyName: "app_kv_project_id_fkey"
-            columns: ["project_id"]
-            isOneToOne: false
-            referencedRelation: "projects"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       attachment_chunks: {
         Row: {
@@ -808,53 +493,6 @@ export type Database = {
           telegram_chat_id?: number
         }
         Relationships: []
-      }
-      build_templates: {
-        Row: {
-          created_at: string
-          description: string | null
-          id: string
-          is_published: boolean
-          name: string
-          preview_url: string | null
-          sort_order: number
-          source_project_id: string | null
-          thumbnail_url: string | null
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          description?: string | null
-          id?: string
-          is_published?: boolean
-          name: string
-          preview_url?: string | null
-          sort_order?: number
-          source_project_id?: string | null
-          thumbnail_url?: string | null
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          description?: string | null
-          id?: string
-          is_published?: boolean
-          name?: string
-          preview_url?: string | null
-          sort_order?: number
-          source_project_id?: string | null
-          thumbnail_url?: string | null
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "build_templates_source_project_id_fkey"
-            columns: ["source_project_id"]
-            isOneToOne: false
-            referencedRelation: "projects"
-            referencedColumns: ["id"]
-          },
-        ]
       }
       calendar_connections: {
         Row: {
@@ -1072,40 +710,199 @@ export type Database = {
         }
         Relationships: []
       }
-      code_integrations: {
+      code_messages: {
         Row: {
-          config: Json
+          content: string | null
           created_at: string
           id: string
-          project_id: string | null
-          provider: string
-          updated_at: string
-          user_id: string
+          project_id: string
+          role: string
+          tool_calls: Json | null
+          tool_results: Json | null
         }
         Insert: {
-          config?: Json
+          content?: string | null
           created_at?: string
           id?: string
-          project_id?: string | null
-          provider: string
-          updated_at?: string
-          user_id: string
+          project_id: string
+          role: string
+          tool_calls?: Json | null
+          tool_results?: Json | null
         }
         Update: {
-          config?: Json
+          content?: string | null
           created_at?: string
           id?: string
-          project_id?: string | null
-          provider?: string
-          updated_at?: string
-          user_id?: string
+          project_id?: string
+          role?: string
+          tool_calls?: Json | null
+          tool_results?: Json | null
         }
         Relationships: [
           {
-            foreignKeyName: "code_integrations_project_id_fkey"
+            foreignKeyName: "code_messages_project_id_fkey"
             columns: ["project_id"]
             isOneToOne: false
-            referencedRelation: "projects"
+            referencedRelation: "code_projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      code_project_files: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          path: string
+          project_id: string
+          updated_at: string
+        }
+        Insert: {
+          content?: string
+          created_at?: string
+          id?: string
+          path: string
+          project_id: string
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          path?: string
+          project_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "code_project_files_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "code_projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      code_project_sandboxes: {
+        Row: {
+          created_at: string
+          last_error: string | null
+          last_synced_at: string | null
+          manager_url: string | null
+          preview_url: string | null
+          project_id: string
+          sandbox_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          last_error?: string | null
+          last_synced_at?: string | null
+          manager_url?: string | null
+          preview_url?: string | null
+          project_id: string
+          sandbox_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          last_error?: string | null
+          last_synced_at?: string | null
+          manager_url?: string | null
+          preview_url?: string | null
+          project_id?: string
+          sandbox_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "code_project_sandboxes_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: true
+            referencedRelation: "code_projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      code_projects: {
+        Row: {
+          accent_color: string | null
+          created_at: string
+          description: string | null
+          entry_file: string
+          id: string
+          initial_prompt: string | null
+          name: string
+          owner_id: string
+          slug: string | null
+          template: string
+          updated_at: string
+        }
+        Insert: {
+          accent_color?: string | null
+          created_at?: string
+          description?: string | null
+          entry_file?: string
+          id?: string
+          initial_prompt?: string | null
+          name?: string
+          owner_id: string
+          slug?: string | null
+          template?: string
+          updated_at?: string
+        }
+        Update: {
+          accent_color?: string | null
+          created_at?: string
+          description?: string | null
+          entry_file?: string
+          id?: string
+          initial_prompt?: string | null
+          name?: string
+          owner_id?: string
+          slug?: string | null
+          template?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      code_publishes: {
+        Row: {
+          bundle_path: string | null
+          created_at: string
+          id: string
+          project_id: string
+          public_url: string | null
+          status: string
+          version: number
+        }
+        Insert: {
+          bundle_path?: string | null
+          created_at?: string
+          id?: string
+          project_id: string
+          public_url?: string | null
+          status?: string
+          version?: number
+        }
+        Update: {
+          bundle_path?: string | null
+          created_at?: string
+          id?: string
+          project_id?: string
+          public_url?: string | null
+          status?: string
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "code_publishes_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "code_projects"
             referencedColumns: ["id"]
           },
         ]
@@ -1815,6 +1612,7 @@ export type Database = {
       }
       fal_image_models: {
         Row: {
+          api_version: string
           created_at: string
           credits: number
           default_aspect: string
@@ -1842,6 +1640,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          api_version?: string
           created_at?: string
           credits?: number
           default_aspect?: string
@@ -1869,6 +1668,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          api_version?: string
           created_at?: string
           credits?: number
           default_aspect?: string
@@ -1899,6 +1699,7 @@ export type Database = {
       }
       fal_video_models: {
         Row: {
+          api_version: string
           cost_per_second_usd: number | null
           cost_per_video_usd: number | null
           created_at: string
@@ -1933,6 +1734,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          api_version?: string
           cost_per_second_usd?: number | null
           cost_per_video_usd?: number | null
           created_at?: string
@@ -1967,6 +1769,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          api_version?: string
           cost_per_second_usd?: number | null
           cost_per_video_usd?: number | null
           created_at?: string
@@ -2362,6 +2165,33 @@ export type Database = {
         }
         Relationships: []
       }
+      letta_user_agents: {
+        Row: {
+          created_at: string
+          enabled: boolean
+          id: string
+          letta_agent_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          letta_agent_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          letta_agent_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       marketing_ads: {
         Row: {
           aspect_ratio: string | null
@@ -2621,6 +2451,42 @@ export type Database = {
           platform?: string | null
           start_time?: string
           status?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      megsy_code_skills: {
+        Row: {
+          category: string
+          content: string
+          created_at: string
+          enabled: boolean
+          id: string
+          sort_order: number
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          category?: string
+          content: string
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          sort_order?: number
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          category?: string
+          content?: string
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          sort_order?: number
           title?: string
           updated_at?: string
           user_id?: string
@@ -3336,15 +3202,7 @@ export type Database = {
           user_id?: string
           user_jwt?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "operator_runs_project_id_fkey"
-            columns: ["project_id"]
-            isOneToOne: false
-            referencedRelation: "projects"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       operator_steps: {
         Row: {
@@ -3501,6 +3359,48 @@ export type Database = {
         }
         Relationships: []
       }
+      pptx_jobs: {
+        Row: {
+          created_at: string
+          doc_type: string
+          error: string | null
+          file_name: string | null
+          file_url: string | null
+          id: string
+          logs: Json | null
+          prompt: string
+          status: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          doc_type?: string
+          error?: string | null
+          file_name?: string | null
+          file_url?: string | null
+          id?: string
+          logs?: Json | null
+          prompt: string
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          doc_type?: string
+          error?: string | null
+          file_name?: string | null
+          file_url?: string | null
+          id?: string
+          logs?: Json | null
+          prompt?: string
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       premium_usage: {
         Row: {
           id: string
@@ -3605,312 +3505,65 @@ export type Database = {
           },
         ]
       }
-      project_custom_domains: {
-        Row: {
-          cloudflare_hostname_id: string | null
-          created_at: string
-          domain: string
-          error_message: string | null
-          id: string
-          is_primary: boolean
-          last_checked_at: string | null
-          project_id: string
-          ssl_status: string | null
-          updated_at: string
-          user_id: string
-          verification_records: Json | null
-          verification_status: string
-        }
-        Insert: {
-          cloudflare_hostname_id?: string | null
-          created_at?: string
-          domain: string
-          error_message?: string | null
-          id?: string
-          is_primary?: boolean
-          last_checked_at?: string | null
-          project_id: string
-          ssl_status?: string | null
-          updated_at?: string
-          user_id: string
-          verification_records?: Json | null
-          verification_status?: string
-        }
-        Update: {
-          cloudflare_hostname_id?: string | null
-          created_at?: string
-          domain?: string
-          error_message?: string | null
-          id?: string
-          is_primary?: boolean
-          last_checked_at?: string | null
-          project_id?: string
-          ssl_status?: string | null
-          updated_at?: string
-          user_id?: string
-          verification_records?: Json | null
-          verification_status?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "project_custom_domains_project_id_fkey"
-            columns: ["project_id"]
-            isOneToOne: false
-            referencedRelation: "projects"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      project_drafts: {
-        Row: {
-          content: string
-          created_at: string
-          id: string
-          project_id: string
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          content?: string
-          created_at?: string
-          id?: string
-          project_id: string
-          updated_at?: string
-          user_id: string
-        }
-        Update: {
-          content?: string
-          created_at?: string
-          id?: string
-          project_id?: string
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
-      project_publish_settings: {
-        Row: {
-          created_at: string
-          id: string
-          project_id: string
-          settings: Json
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          project_id: string
-          settings?: Json
-          updated_at?: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          project_id?: string
-          settings?: Json
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
-      project_sandboxes: {
-        Row: {
-          created_at: string
-          dev_url: string | null
-          hmr_upgraded_at: string | null
-          last_error: string | null
-          last_sync_at: string | null
-          project_id: string
-          sandbox_id: string | null
-          status: string
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          dev_url?: string | null
-          hmr_upgraded_at?: string | null
-          last_error?: string | null
-          last_sync_at?: string | null
-          project_id: string
-          sandbox_id?: string | null
-          status?: string
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          dev_url?: string | null
-          hmr_upgraded_at?: string | null
-          last_error?: string | null
-          last_sync_at?: string | null
-          project_id?: string
-          sandbox_id?: string | null
-          status?: string
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "project_sandboxes_project_id_fkey"
-            columns: ["project_id"]
-            isOneToOne: true
-            referencedRelation: "projects"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      project_visits: {
-        Row: {
-          country: string | null
-          created_at: string
-          device: string | null
-          id: string
-          path: string
-          project_id: string
-          referrer: string | null
-          ua_hash: string | null
-        }
-        Insert: {
-          country?: string | null
-          created_at?: string
-          device?: string | null
-          id?: string
-          path?: string
-          project_id: string
-          referrer?: string | null
-          ua_hash?: string | null
-        }
-        Update: {
-          country?: string | null
-          created_at?: string
-          device?: string | null
-          id?: string
-          path?: string
-          project_id?: string
-          referrer?: string | null
-          ua_hash?: string | null
-        }
-        Relationships: []
-      }
       projects: {
         Row: {
-          archived_at: string | null
-          cloudflare_url: string | null
-          conversation_id: string | null
           created_at: string
+          custom_domain: string | null
           description: string | null
-          files_snapshot: Json | null
-          fly_app_name: string | null
-          fly_machine_id: string | null
-          github_branch: string | null
-          github_owner: string | null
           github_repo: string | null
-          github_url: string | null
           id: string
-          is_private: boolean
-          linked_supabase_anon_key: string | null
           linked_supabase_project_name: string | null
           linked_supabase_project_ref: string | null
-          linked_supabase_url: string | null
           name: string
           preview_url: string | null
-          preview_version: number
           publish_settings: Json
-          published_at: string | null
           published_url: string | null
-          repo_url: string | null
           status: string
           thumbnail_url: string | null
           updated_at: string
           user_id: string
           visibility: string
-          webly_project_id: string | null
           workspace_id: string | null
         }
         Insert: {
-          archived_at?: string | null
-          cloudflare_url?: string | null
-          conversation_id?: string | null
           created_at?: string
+          custom_domain?: string | null
           description?: string | null
-          files_snapshot?: Json | null
-          fly_app_name?: string | null
-          fly_machine_id?: string | null
-          github_branch?: string | null
-          github_owner?: string | null
           github_repo?: string | null
-          github_url?: string | null
           id?: string
-          is_private?: boolean
-          linked_supabase_anon_key?: string | null
           linked_supabase_project_name?: string | null
           linked_supabase_project_ref?: string | null
-          linked_supabase_url?: string | null
           name?: string
           preview_url?: string | null
-          preview_version?: number
           publish_settings?: Json
-          published_at?: string | null
           published_url?: string | null
-          repo_url?: string | null
           status?: string
           thumbnail_url?: string | null
           updated_at?: string
           user_id: string
           visibility?: string
-          webly_project_id?: string | null
           workspace_id?: string | null
         }
         Update: {
-          archived_at?: string | null
-          cloudflare_url?: string | null
-          conversation_id?: string | null
           created_at?: string
+          custom_domain?: string | null
           description?: string | null
-          files_snapshot?: Json | null
-          fly_app_name?: string | null
-          fly_machine_id?: string | null
-          github_branch?: string | null
-          github_owner?: string | null
           github_repo?: string | null
-          github_url?: string | null
           id?: string
-          is_private?: boolean
-          linked_supabase_anon_key?: string | null
           linked_supabase_project_name?: string | null
           linked_supabase_project_ref?: string | null
-          linked_supabase_url?: string | null
           name?: string
           preview_url?: string | null
-          preview_version?: number
           publish_settings?: Json
-          published_at?: string | null
           published_url?: string | null
-          repo_url?: string | null
           status?: string
           thumbnail_url?: string | null
           updated_at?: string
           user_id?: string
           visibility?: string
-          webly_project_id?: string | null
           workspace_id?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "projects_conversation_id_fkey"
-            columns: ["conversation_id"]
-            isOneToOne: false
-            referencedRelation: "conversations"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "projects_workspace_id_fkey"
-            columns: ["workspace_id"]
-            isOneToOne: false
-            referencedRelation: "workspaces"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       rate_limit_buckets: {
         Row: {
@@ -3951,6 +3604,57 @@ export type Database = {
           updated_at?: string
           user_id?: string | null
           window_start?: string
+        }
+        Relationships: []
+      }
+      referral_clicks: {
+        Row: {
+          code: string
+          converted_at: string | null
+          converted_user_id: string | null
+          country: string | null
+          created_at: string
+          id: string
+          ip_hash: string | null
+          landing_path: string | null
+          referer: string | null
+          referrer_user_id: string | null
+          user_agent: string | null
+          utm_campaign: string | null
+          utm_medium: string | null
+          utm_source: string | null
+        }
+        Insert: {
+          code: string
+          converted_at?: string | null
+          converted_user_id?: string | null
+          country?: string | null
+          created_at?: string
+          id?: string
+          ip_hash?: string | null
+          landing_path?: string | null
+          referer?: string | null
+          referrer_user_id?: string | null
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+        }
+        Update: {
+          code?: string
+          converted_at?: string | null
+          converted_user_id?: string | null
+          country?: string | null
+          created_at?: string
+          id?: string
+          ip_hash?: string | null
+          landing_path?: string | null
+          referer?: string | null
+          referrer_user_id?: string | null
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
         }
         Relationships: []
       }
@@ -4369,13 +4073,6 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "security_findings_project_id_fkey"
-            columns: ["project_id"]
-            isOneToOne: false
-            referencedRelation: "projects"
-            referencedColumns: ["id"]
-          },
-          {
             foreignKeyName: "security_findings_scan_id_fkey"
             columns: ["scan_id"]
             isOneToOne: false
@@ -4403,15 +4100,7 @@ export type Database = {
           updated_at?: string
           user_id?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "security_memory_project_id_fkey"
-            columns: ["project_id"]
-            isOneToOne: true
-            referencedRelation: "projects"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       security_scans: {
         Row: {
@@ -4453,15 +4142,7 @@ export type Database = {
           user_id?: string
           warning_count?: number
         }
-        Relationships: [
-          {
-            foreignKeyName: "security_scans_project_id_fkey"
-            columns: ["project_id"]
-            isOneToOne: false
-            referencedRelation: "projects"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       service_incidents: {
         Row: {
@@ -5515,110 +5196,6 @@ export type Database = {
           },
         ]
       }
-      user_memories: {
-        Row: {
-          created_at: string
-          embedding: string | null
-          fact: string
-          id: string
-          importance: number
-          source: string | null
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          embedding?: string | null
-          fact: string
-          id?: string
-          importance?: number
-          source?: string | null
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          embedding?: string | null
-          fact?: string
-          id?: string
-          importance?: number
-          source?: string | null
-          user_id?: string
-        }
-        Relationships: []
-      }
-      user_memory_entries: {
-        Row: {
-          created_at: string
-          id: string
-          metadata: Json
-          relevance_score: number
-          scope: Database["public"]["Enums"]["memory_scope"]
-          source_conversation_id: string | null
-          source_project_id: string | null
-          summary: string
-          title: string | null
-          updated_at: string
-          user_id: string
-          workspace_id: string | null
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          metadata?: Json
-          relevance_score?: number
-          scope: Database["public"]["Enums"]["memory_scope"]
-          source_conversation_id?: string | null
-          source_project_id?: string | null
-          summary: string
-          title?: string | null
-          updated_at?: string
-          user_id: string
-          workspace_id?: string | null
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          metadata?: Json
-          relevance_score?: number
-          scope?: Database["public"]["Enums"]["memory_scope"]
-          source_conversation_id?: string | null
-          source_project_id?: string | null
-          summary?: string
-          title?: string | null
-          updated_at?: string
-          user_id?: string
-          workspace_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "user_memory_entries_source_conversation_id_fkey"
-            columns: ["source_conversation_id"]
-            isOneToOne: false
-            referencedRelation: "conversations"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "user_memory_entries_source_project_id_fkey"
-            columns: ["source_project_id"]
-            isOneToOne: false
-            referencedRelation: "projects"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "user_memory_entries_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "user_memory_entries_workspace_id_fkey"
-            columns: ["workspace_id"]
-            isOneToOne: false
-            referencedRelation: "workspaces"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       user_memory_profiles: {
         Row: {
           account_summary: string | null
@@ -6451,13 +6028,6 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "workspace_tasks_project_id_fkey"
-            columns: ["project_id"]
-            isOneToOne: false
-            referencedRelation: "projects"
-            referencedColumns: ["id"]
-          },
-          {
             foreignKeyName: "workspace_tasks_workspace_id_fkey"
             columns: ["workspace_id"]
             isOneToOne: false
@@ -6751,10 +6321,6 @@ export type Database = {
       }
       cleanup_old_research_reports: { Args: never; Returns: undefined }
       cleanup_rate_limits: { Args: never; Returns: undefined }
-      clone_build_template: {
-        Args: { _new_project_id: string; _template_id: string }
-        Returns: number
-      }
       create_notification: {
         Args: {
           p_message: string
@@ -6796,10 +6362,6 @@ export type Database = {
         Returns: Json
       }
       get_invite_details: { Args: { p_token: string }; Returns: Json }
-      get_project_visit_count: {
-        Args: { p_project_id: string }
-        Returns: number
-      }
       has_unlimited_plan: { Args: { p_user_id: string }; Returns: boolean }
       is_conversation_member: {
         Args: { p_conversation_id: string; p_user_id: string }
@@ -6820,18 +6382,6 @@ export type Database = {
       mark_notifications_read: {
         Args: { p_notification_ids?: string[]; p_user_id: string }
         Returns: undefined
-      }
-      match_project_files: {
-        Args: {
-          p_match_count?: number
-          p_project_id: string
-          p_query_embedding: string
-        }
-        Returns: {
-          content: string
-          path: string
-          similarity: number
-        }[]
       }
       owns_conversation: {
         Args: { p_conversation_id: string }
@@ -6876,19 +6426,6 @@ export type Database = {
           content: string
           file_name: string
           id: string
-          similarity: number
-        }[]
-      }
-      search_user_memories: {
-        Args: {
-          p_match_count?: number
-          p_query_embedding: string
-          p_user_id: string
-        }
-        Returns: {
-          fact: string
-          id: string
-          importance: number
           similarity: number
         }[]
       }
