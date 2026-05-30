@@ -184,26 +184,32 @@ export type Database = {
         Row: {
           created_at: string
           created_by: string | null
+          file_count: number
           files: Json
           id: string
           label: string | null
           project_id: string
+          total_bytes: number
         }
         Insert: {
           created_at?: string
           created_by?: string | null
+          file_count?: number
           files?: Json
           id?: string
           label?: string | null
           project_id: string
+          total_bytes?: number
         }
         Update: {
           created_at?: string
           created_by?: string | null
+          file_count?: number
           files?: Json
           id?: string
           label?: string | null
           project_id?: string
+          total_bytes?: number
         }
         Relationships: [
           {
@@ -214,6 +220,45 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      ai_project_usage: {
+        Row: {
+          action: string
+          completion_tokens: number
+          created_at: string
+          duration_ms: number
+          id: string
+          mc_cost: number
+          model: string | null
+          project_id: string
+          prompt_tokens: number
+          user_id: string | null
+        }
+        Insert: {
+          action?: string
+          completion_tokens?: number
+          created_at?: string
+          duration_ms?: number
+          id?: string
+          mc_cost?: number
+          model?: string | null
+          project_id: string
+          prompt_tokens?: number
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          completion_tokens?: number
+          created_at?: string
+          duration_ms?: number
+          id?: string
+          mc_cost?: number
+          model?: string | null
+          project_id?: string
+          prompt_tokens?: number
+          user_id?: string | null
+        }
+        Relationships: []
       }
       api_keys: {
         Row: {
@@ -3505,15 +3550,131 @@ export type Database = {
           },
         ]
       }
+      project_custom_domains: {
+        Row: {
+          created_at: string
+          domain: string
+          id: string
+          project_id: string
+          updated_at: string
+          user_id: string
+          verification_status: string
+        }
+        Insert: {
+          created_at?: string
+          domain: string
+          id?: string
+          project_id: string
+          updated_at?: string
+          user_id: string
+          verification_status?: string
+        }
+        Update: {
+          created_at?: string
+          domain?: string
+          id?: string
+          project_id?: string
+          updated_at?: string
+          user_id?: string
+          verification_status?: string
+        }
+        Relationships: []
+      }
+      project_drafts: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          project_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          content?: string
+          created_at?: string
+          id?: string
+          project_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          project_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      project_versions: {
+        Row: {
+          created_at: string
+          id: string
+          message: string | null
+          project_id: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          message?: string | null
+          project_id: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          message?: string | null
+          project_id?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      project_visits: {
+        Row: {
+          country: string | null
+          created_at: string
+          device: string | null
+          id: string
+          path: string
+          project_id: string
+          referrer: string | null
+          ua_hash: string | null
+        }
+        Insert: {
+          country?: string | null
+          created_at?: string
+          device?: string | null
+          id?: string
+          path?: string
+          project_id: string
+          referrer?: string | null
+          ua_hash?: string | null
+        }
+        Update: {
+          country?: string | null
+          created_at?: string
+          device?: string | null
+          id?: string
+          path?: string
+          project_id?: string
+          referrer?: string | null
+          ua_hash?: string | null
+        }
+        Relationships: []
+      }
       projects: {
         Row: {
           created_at: string
           custom_domain: string | null
           description: string | null
+          files_snapshot: Json | null
           github_repo: string | null
           id: string
           linked_supabase_project_name: string | null
           linked_supabase_project_ref: string | null
+          linked_supabase_url: string | null
           name: string
           preview_url: string | null
           publish_settings: Json
@@ -3529,10 +3690,12 @@ export type Database = {
           created_at?: string
           custom_domain?: string | null
           description?: string | null
+          files_snapshot?: Json | null
           github_repo?: string | null
           id?: string
           linked_supabase_project_name?: string | null
           linked_supabase_project_ref?: string | null
+          linked_supabase_url?: string | null
           name?: string
           preview_url?: string | null
           publish_settings?: Json
@@ -3548,10 +3711,12 @@ export type Database = {
           created_at?: string
           custom_domain?: string | null
           description?: string | null
+          files_snapshot?: Json | null
           github_repo?: string | null
           id?: string
           linked_supabase_project_name?: string | null
           linked_supabase_project_ref?: string | null
+          linked_supabase_url?: string | null
           name?: string
           preview_url?: string | null
           publish_settings?: Json
@@ -5195,6 +5360,36 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      user_memory_entries: {
+        Row: {
+          created_at: string
+          id: string
+          scope: string | null
+          summary: string | null
+          title: string | null
+          user_id: string
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          scope?: string | null
+          summary?: string | null
+          title?: string | null
+          user_id: string
+          workspace_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          scope?: string | null
+          summary?: string | null
+          title?: string | null
+          user_id?: string
+          workspace_id?: string | null
+        }
+        Relationships: []
       }
       user_memory_profiles: {
         Row: {
